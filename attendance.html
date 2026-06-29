@@ -1693,14 +1693,9 @@
     const allCheckBtn = document.getElementById('all-check-btn');
     if (allCheckBtn) {
       const ev2 = curEvent();
-      if (!ev2 || !isEditable()) {
-        allCheckBtn.style.display = 'none';
-      } else {
-        allCheckBtn.style.display = '';
-        const allPresent = roster.length > 0 && roster.every(n => ev2.attendance[n]);
-        allCheckBtn.textContent = allPresent ? '☑ 전체 해제' : '✅ 전체 출석';
-        allCheckBtn.classList.toggle('all-done', allPresent);
-      }
+      const allPresent = ev2 && roster.length > 0 && roster.every(n => ev2.attendance[n]);
+      allCheckBtn.textContent = allPresent ? '☑ 전체 해제' : '✅ 전체 출석';
+      allCheckBtn.classList.toggle('all-done', allPresent);
     }
     document.getElementById('stat-present').textContent = presentCount!==null ? presentCount : '-';
     document.getElementById('stat-absent').textContent  = absentCount!==null  ? absentCount  : '-';
